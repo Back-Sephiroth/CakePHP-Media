@@ -116,7 +116,7 @@ jQuery(function(){
 
 	uploader.bind('FilesAdded', function(up, files) {
 		for (var i in files) {
-			$('#filelist>form').prepend('<div class="item" id="' + files[i].id + '">&nbsp; &nbsp;' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <div class="progressbar"><div class="progress"></div></div></div>');
+			$('#filelist>form').prepend('<div class="item" id="' + files[i].id + '">&nbsp; &nbsp;' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <div class="progressbar"><div class="progress"  style="visibility: hidden;"></div></div></div>');
 		}
 		uploader.start();
 		$('#droparea').removeClass('dropping');
@@ -125,7 +125,8 @@ jQuery(function(){
 	});
 
 	uploader.bind('UploadProgress', function(up, file) {
-		$('#'+file.id).find('.progress').css('width',file.percent+'%')
+		$('#'+file.id).find('.progress').css('width',file.percent+'%');
+		$('#'+file.id).find('.progress').css("visibility", "")
 	});
 
 	uploader.bind('FileUploaded', function(up, file, response){
